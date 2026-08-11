@@ -66,7 +66,22 @@ export type Database = {
           follower_id?: string
           following_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "follows_follower_id_profiles_fkey"
+            columns: ["follower_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "follows_following_id_profiles_fkey"
+            columns: ["following_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -137,6 +152,13 @@ export type Database = {
             referencedRelation: "books"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "reviews_user_id_profiles_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
         ]
       }
       shelf_items: {
@@ -173,6 +195,13 @@ export type Database = {
             columns: ["book_id"]
             isOneToOne: false
             referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "shelf_items_user_id_profiles_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
