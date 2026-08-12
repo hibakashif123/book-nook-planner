@@ -104,7 +104,7 @@ export function Book3D({
               left: 0,
               width: thickness,
               height: "100%",
-              transform: `rotateY(-90deg) translateZ(${thickness / 2}px)`,
+              transform: `translateZ(-${thickness / 2}px) rotateY(-90deg)`,
               transformOrigin: "left center",
               background:
                 "linear-gradient(90deg, var(--color-muted) 0%, var(--color-card) 45%, var(--color-muted) 100%)",
@@ -126,7 +126,7 @@ export function Book3D({
               right: 0,
               width: thickness,
               height: "calc(100% - 4px)",
-              transform: `rotateY(90deg) translateZ(${width - thickness / 2}px)`,
+              transform: `translateZ(-${thickness / 2}px) rotateY(90deg)`,
               transformOrigin: "right center",
               background:
                 "repeating-linear-gradient(90deg, oklch(0.92 0.02 90) 0 1.5px, oklch(0.78 0.03 85) 1.5px 3px)",
@@ -141,7 +141,7 @@ export function Book3D({
               left: 0,
               width: "100%",
               height: thickness,
-              transform: `rotateX(90deg) translateZ(${thickness / 2}px)`,
+              transform: `translateZ(-${thickness / 2}px) rotateX(90deg)`,
               transformOrigin: "top center",
               background: "oklch(0.9 0.02 90)",
             }}
@@ -153,11 +153,12 @@ export function Book3D({
               left: 0,
               width: "100%",
               height: thickness,
-              transform: `rotateX(-90deg) translateZ(${thickness / 2}px)`,
+              transform: `translateZ(-${thickness / 2}px) rotateX(-90deg)`,
               transformOrigin: "bottom center",
               background: "oklch(0.82 0.02 90)",
             }}
           />
+
         </div>
       </div>
       <div
