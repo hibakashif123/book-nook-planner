@@ -129,10 +129,11 @@ function SearchPage() {
               />
               <h3 className="line-clamp-2 text-center font-display text-base leading-tight">{result.title}</h3>
 
-              <p className="text-xs text-muted-foreground">
+              <p className="text-center text-xs text-muted-foreground">
                 {result.author}
                 {result.publishedYear ? ` · ${result.publishedYear}` : ""}
               </p>
+
               <Button
                 size="sm"
                 variant="outline"
