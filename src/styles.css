@@ -144,3 +144,41 @@
     letter-spacing: -0.01em;
   }
 }
+
+@keyframes book3d-bob {
+  0%,
+  100% {
+    transform: translateY(-8px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes book3d-shadow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scaleX(1.05);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scaleX(0.85);
+  }
+}
+
+.book3d-float {
+  animation: book3d-bob 6s ease-in-out infinite;
+}
+
+.book3d-shadow {
+  animation: book3d-shadow-pulse 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book3d-float,
+  .book3d-shadow {
+    animation: none;
+  }
+}
+
