@@ -10,7 +10,9 @@ import {
   SHELF_LABELS,
   type ShelfStatus,
 } from "@/lib/books";
-import { BookCover } from "@/components/BookCard";
+
+import { Book3D } from "@/components/Book3D";
+
 import { StarRating } from "@/components/StarRating";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -156,10 +158,11 @@ function BookDetail() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <div className="grid gap-10 md:grid-cols-[220px_1fr]">
-        <div>
-          <BookCover book={book} />
+      <div className="grid gap-10 md:grid-cols-[260px_1fr]">
+        <div className="pt-2">
+          <Book3D title={book.title} author={book.author} coverUrl={book.cover_url} width={200} />
         </div>
+
         <div>
           <h1 className="text-4xl leading-tight">{book.title}</h1>
           <p className="mt-1 text-muted-foreground">

@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Skeleton } from "@/components/ui/skeleton";
-import { BookCover } from "@/components/BookCard";
+import { Book3D } from "@/components/Book3D";
 
 export const Route = createFileRoute("/search")({
   head: () => ({
@@ -117,15 +117,23 @@ function SearchPage() {
       )}
 
       {results.data && results.data.length > 0 && (
-        <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-3 lg:grid-cols-4">
           {results.data.map((result) => (
             <div key={result.openLibraryId} className="space-y-2">
-              <BookCover book={{ title: result.title, cover_url: result.coverUrl }} />
-              <h3 className="line-clamp-2 font-display text-base leading-tight">{result.title}</h3>
-              <p className="text-xs text-muted-foreground">
+              <Book3D
+                title={result.title}
+                author={result.author}
+                coverUrl={result.coverUrl}
+                width={150}
+                thickness={22}
+              />
+              <h3 className="line-clamp-2 text-center font-display text-base leading-tight">{result.title}</h3>
+
+              <p className="text-center text-xs text-muted-foreground">
                 {result.author}
                 {result.publishedYear ? ` · ${result.publishedYear}` : ""}
               </p>
+
               <Button
                 size="sm"
                 variant="outline"
@@ -154,12 +162,14 @@ function SearchPage() {
         <p className="mt-8 text-sm text-muted-foreground">No matches. Add it yourself below.</p>
       )}
 
-      <section className="mt-16 max-w-xl">
+      <section className="mt-16 grid gap-12 md:grid-cols-[minmax(0,1fr)_260px]">
+        <div className="max-w-xl">
         <h2 className="text-2xl">Add a book yourself</h2>
         <p className="mt-1 text-sm text-muted-foreground">
           Indie, ARC or self-published? Enter the details manually.
         </p>
         <form className="mt-5 space-y-4" onSubmit={submitManual}>
+
           <div className="grid gap-2">
             <Label htmlFor="title">Title</Label>
             <Input
@@ -216,7 +226,20 @@ function SearchPage() {
             </Button>
           )}
         </form>
+        </div>
+        <aside className="md:sticky md:top-24 md:self-start">
+          <p className="mb-4 text-center text-xs uppercase tracking-widest text-muted-foreground">
+            Live preview
+          </p>
+          <Book3D
+            title={manual.title || "Your book"}
+            author={manual.author}
+            coverUrl={manual.coverUrl || null}
+            width={180}
+          />
+        </aside>
       </section>
+
     </div>
   );
 }
