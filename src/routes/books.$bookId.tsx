@@ -169,6 +169,7 @@ function BookDetail() {
             {book.author}
             {book.published_year ? ` · ${book.published_year}` : ""}
           </p>
+          <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-gold/70">Kashif Butt</p>
           <div className="mt-4 flex items-center gap-3">
             <StarRating value={average} />
             <span className="text-sm text-muted-foreground">
