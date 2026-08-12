@@ -10,7 +10,7 @@ import {
   SHELF_LABELS,
   type ShelfStatus,
 } from "@/lib/books";
-import { BookCover } from "@/components/BookCard";
+
 import { Book3D } from "@/components/Book3D";
 
 import { StarRating } from "@/components/StarRating";
