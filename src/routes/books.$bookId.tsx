@@ -11,6 +11,8 @@ import {
   type ShelfStatus,
 } from "@/lib/books";
 import { BookCover } from "@/components/BookCard";
+import { Book3D } from "@/components/Book3D";
+
 import { StarRating } from "@/components/StarRating";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
