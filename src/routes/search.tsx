@@ -226,7 +226,20 @@ function SearchPage() {
             </Button>
           )}
         </form>
+        </div>
+        <aside className="md:sticky md:top-24 md:self-start">
+          <p className="mb-4 text-center text-xs uppercase tracking-widest text-muted-foreground">
+            Live preview
+          </p>
+          <Book3D
+            title={manual.title || "Your book"}
+            author={manual.author}
+            coverUrl={manual.coverUrl || null}
+            width={180}
+          />
+        </aside>
       </section>
+
     </div>
   );
 }
