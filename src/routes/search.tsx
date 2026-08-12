@@ -117,11 +117,18 @@ function SearchPage() {
       )}
 
       {results.data && results.data.length > 0 && (
-        <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-3 lg:grid-cols-4">
           {results.data.map((result) => (
             <div key={result.openLibraryId} className="space-y-2">
-              <BookCover book={{ title: result.title, cover_url: result.coverUrl }} />
-              <h3 className="line-clamp-2 font-display text-base leading-tight">{result.title}</h3>
+              <Book3D
+                title={result.title}
+                author={result.author}
+                coverUrl={result.coverUrl}
+                width={150}
+                thickness={22}
+              />
+              <h3 className="line-clamp-2 text-center font-display text-base leading-tight">{result.title}</h3>
+
               <p className="text-xs text-muted-foreground">
                 {result.author}
                 {result.publishedYear ? ` · ${result.publishedYear}` : ""}
