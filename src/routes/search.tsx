@@ -162,12 +162,14 @@ function SearchPage() {
         <p className="mt-8 text-sm text-muted-foreground">No matches. Add it yourself below.</p>
       )}
 
-      <section className="mt-16 max-w-xl">
+      <section className="mt-16 grid gap-12 md:grid-cols-[minmax(0,1fr)_260px]">
+        <div className="max-w-xl">
         <h2 className="text-2xl">Add a book yourself</h2>
         <p className="mt-1 text-sm text-muted-foreground">
           Indie, ARC or self-published? Enter the details manually.
         </p>
         <form className="mt-5 space-y-4" onSubmit={submitManual}>
+
           <div className="grid gap-2">
             <Label htmlFor="title">Title</Label>
             <Input
