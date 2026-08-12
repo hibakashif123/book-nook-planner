@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Skeleton } from "@/components/ui/skeleton";
-import { BookCover } from "@/components/BookCard";
+import { Book3D } from "@/components/Book3D";
 
 export const Route = createFileRoute("/search")({
   head: () => ({
