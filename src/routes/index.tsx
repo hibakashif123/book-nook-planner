@@ -106,7 +106,7 @@ function Index() {
             <div>
               <h2 className="text-3xl">Trending right now</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Popular BookTok picks, live from Google Books. Tap one to add it to your shelves.
+                Popular BookTok picks, pulled live from the web. Tap one to find it and add it to your shelves.
               </p>
             </div>
             <Button asChild variant="ghost">
