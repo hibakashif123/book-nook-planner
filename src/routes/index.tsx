@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { fetchDiscovery } from "@/lib/books";
-import { fetchGoogleTrending } from "@/lib/googlebooks.functions";
+import { fetchTrendingBooks } from "@/lib/googlebooks.functions";
 import { BookCard } from "@/components/BookCard";
 import { Book3D } from "@/components/Book3D";
 import { StarRating } from "@/components/StarRating";
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { data, isLoading } = useQuery({ queryKey: ["discovery"], queryFn: fetchDiscovery });
-  const googleTrending = useServerFn(fetchGoogleTrending);
+  const googleTrending = useServerFn(fetchTrendingBooks);
   const trending = useQuery({
     queryKey: ["google-trending", "booktok"],
     queryFn: () => googleTrending({ data: { subject: "booktok" } }),
