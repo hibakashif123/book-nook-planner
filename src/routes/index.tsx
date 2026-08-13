@@ -34,8 +34,8 @@ function Index() {
   const { data, isLoading } = useQuery({ queryKey: ["discovery"], queryFn: fetchDiscovery });
   const googleTrending = useServerFn(fetchTrendingBooks);
   const trending = useQuery({
-    queryKey: ["google-trending", "booktok"],
-    queryFn: () => googleTrending({ data: { subject: "booktok" } }),
+    queryKey: ["trending-books"],
+    queryFn: () => googleTrending({ data: {} }),
     staleTime: 1000 * 60 * 30,
   });
 
