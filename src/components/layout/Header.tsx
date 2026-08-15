@@ -22,7 +22,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4">
         <Link to="/" className="flex items-center gap-2">
           <BookOpen className="h-5 w-5 text-gold" />
-          <span className="font-display text-2xl tracking-tight">BookTok</span>
+          <span className="font-display text-2xl tracking-tight">BooksOcean</span>
         </Link>
         <nav className="hidden items-center gap-5 text-sm sm:flex">
           <Link to="/search" activeProps={{ className: "text-gold" }} className="hover:text-gold">
