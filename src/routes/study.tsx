@@ -207,7 +207,7 @@ function StudyPage() {
         <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4 lg:grid-cols-6">
           {results.data.map((r) => (
             <div key={r.openLibraryId} className="space-y-2">
-              <BookCover title={r.title} coverUrl={r.coverUrl} />
+              <BookCover book={{ title: r.title, cover_url: r.coverUrl }} />
               <h3 className="line-clamp-2 font-display text-sm leading-tight">{r.title}</h3>
               <p className="text-xs text-muted-foreground">
                 {r.author}
