@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { fetchDiscovery } from "@/lib/books";
 import { fetchTrendingBooks } from "@/lib/googlebooks.functions";
+import { goodreadsReviews } from "@/lib/goodreadsReviews";
 import { BookCard } from "@/components/BookCard";
 import { Book3D } from "@/components/Book3D";
 import { StarRating } from "@/components/StarRating";
