@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { fetchDiscovery } from "@/lib/books";
 import { fetchTrendingBooks } from "@/lib/googlebooks.functions";
+import { goodreadsReviews } from "@/lib/goodreadsReviews";
 import { BookCard } from "@/components/BookCard";
 import { Book3D } from "@/components/Book3D";
 import { StarRating } from "@/components/StarRating";
@@ -229,6 +230,40 @@ function Index() {
           {data && data.reviews.length === 0 && (
             <p className="text-sm text-muted-foreground">Nothing reviewed yet.</p>
           )}
+        </div>
+
+        <div className="mt-14 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h3 className="text-2xl">From Goodreads readers</h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Reader reviews of the books everyone is talking about.
+            </p>
+          </div>
+        </div>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {goodreadsReviews.map((review) => (
+            <article
+              key={review.id}
+              className="rounded-sm border border-border bg-card p-5 transition-colors hover:border-gold"
+            >
+              <div className="flex flex-wrap items-center gap-3">
+                <StarRating value={review.rating} size={15} />
+                <a
+                  href={review.goodreadsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-display text-xl hover:text-gold"
+                >
+                  {review.title}
+                </a>
+                <span className="text-xs text-muted-foreground">{review.author}</span>
+              </div>
+              <p className="mt-3 line-clamp-4 text-sm text-muted-foreground">{review.body}</p>
+              <p className="mt-3 text-[11px] uppercase tracking-[0.2em] text-gold/70">
+                {review.reviewer} · Goodreads
+              </p>
+            </article>
+          ))}
         </div>
       </section>
     </div>
