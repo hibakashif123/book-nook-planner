@@ -28,6 +28,10 @@ export function Header() {
           <Link to="/search" activeProps={{ className: "text-gold" }} className="hover:text-gold">
             Search
           </Link>
+          <Link to="/study" activeProps={{ className: "text-gold" }} className="hover:text-gold">
+            Study guides
+          </Link>
+
           <Link to="/shelves" activeProps={{ className: "text-gold" }} className="hover:text-gold">
             Shelves
           </Link>
