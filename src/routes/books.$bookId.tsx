@@ -180,6 +180,15 @@ function BookDetail() {
             <p className="mt-5 max-w-2xl text-sm text-muted-foreground">{book.description}</p>
           )}
 
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button asChild>
+              <Link to="/read/$bookId" params={{ bookId: book.id }}>Read online</Link>
+            </Button>
+            <span className="self-center text-xs text-muted-foreground">
+              First chapter free · full book &amp; offline reading with a free account
+            </span>
+          </div>
+
           <div className="mt-8">
             <h2 className="text-xl">Your shelf</h2>
             {user ? (
