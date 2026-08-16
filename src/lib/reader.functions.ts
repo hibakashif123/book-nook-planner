@@ -93,7 +93,7 @@ export const fetchReadableBook = createServerFn({ method: "GET" })
       const query = [data.title, data.author].filter(Boolean).join(" ");
       const res = await fetch(
         `https://gutendex.com/books?search=${encodeURIComponent(query)}`,
-        { headers: { Accept: "application/json" } },
+        { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(12000) },
       );
       if (!res.ok) return { ...empty, note: "Reader service unavailable right now." };
       const json = (await res.json()) as {
@@ -108,9 +108,10 @@ export const fetchReadableBook = createServerFn({ method: "GET" })
       const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
       const wanted = normalize(data.title);
       const candidates = json.results ?? [];
-      const match =
-        candidates.find((b) => normalize(b.title).includes(wanted) || wanted.includes(normalize(b.title))) ??
-        candidates[0];
+      const match = candidates.find((b) => {
+        const t = normalize(b.title);
+        return t === wanted || t.startsWith(wanted) || wanted.startsWith(t);
+      });
 
       if (!match) {
         return {
@@ -132,7 +133,7 @@ export const fetchReadableBook = createServerFn({ method: "GET" })
         return { ...empty, source: "Project Gutenberg", sourceUrl, pdfUrl, note: "Only an external copy is available." };
       }
 
-      const textRes = await fetch(txtUrl);
+      const textRes = await fetch(txtUrl, { signal: AbortSignal.timeout(20000) });
       if (!textRes.ok) return { ...empty, source: "Project Gutenberg", sourceUrl, pdfUrl };
       const raw = await textRes.text();
       const chapters = splitChapters(stripGutenbergBoilerplate(raw));
