@@ -4,7 +4,8 @@ import { useServerFn } from "@tanstack/react-start";
 import { fetchDiscovery } from "@/lib/books";
 import { fetchTrendingBooks } from "@/lib/googlebooks.functions";
 import { goodreadsReviews } from "@/lib/goodreadsReviews";
-import { BookCard } from "@/components/BookCard";
+import { BookOpen } from "lucide-react";
+import { BookCard, BookCover } from "@/components/BookCard";
 import { Book3D } from "@/components/Book3D";
 import { StarRating } from "@/components/StarRating";
 import { Button } from "@/components/ui/button";
@@ -197,8 +198,18 @@ function Index() {
           {data?.reviews.slice(0, 6).map((review) => (
             <article
               key={review.id}
-              className="rounded-sm border border-border bg-card p-5 transition-colors hover:border-gold"
+              className="relative rounded-sm border border-border bg-card p-5 pr-20 transition-colors hover:border-gold"
             >
+              {review.books && (
+                <Link
+                  to="/books/$bookId"
+                  params={{ bookId: review.book_id }}
+                  className="absolute right-4 top-4 block w-12 overflow-hidden rounded-sm border border-border/70 shadow-md transition-colors hover:border-gold"
+                  aria-label={`Open ${review.books.title}`}
+                >
+                  <BookCover book={review.books} className="aspect-2/3 w-full object-cover" />
+                </Link>
+              )}
               <div className="flex flex-wrap items-center gap-3">
                 <StarRating value={review.rating} size={15} />
                 {review.books && (
@@ -244,8 +255,17 @@ function Index() {
           {goodreadsReviews.map((review) => (
             <article
               key={review.id}
-              className="rounded-sm border border-border bg-card p-5 transition-colors hover:border-gold"
+              className="relative rounded-sm border border-border bg-card p-5 pr-20 transition-colors hover:border-gold"
             >
+              <a
+                href={review.goodreadsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${review.title} on Goodreads`}
+                className="absolute right-4 top-4 flex aspect-2/3 w-12 items-center justify-center overflow-hidden rounded-sm border border-border/70 bg-muted shadow-md transition-colors hover:border-gold"
+              >
+                <BookOpen className="text-gold/70" size={18} />
+              </a>
               <div className="flex flex-wrap items-center gap-3">
                 <StarRating value={review.rating} size={15} />
                 <a
