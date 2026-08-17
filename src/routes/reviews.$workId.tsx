@@ -89,7 +89,7 @@ function ReviewsPage() {
       <section className="border-b border-border bg-gradient-to-b from-card to-background">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-[220px_1fr]">
           <div className="mx-auto w-[180px] md:mx-0">
-            <Book3D coverUrl={coverUrl} title={title} />
+            <Book3D coverUrl={coverUrl} title={title} author={author ?? d?.author ?? undefined} />
           </div>
           <div>
             <h1 className="text-4xl leading-tight">{title || "Book"}</h1>
