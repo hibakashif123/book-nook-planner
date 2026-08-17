@@ -108,7 +108,7 @@ function Index() {
             <div>
               <h2 className="text-3xl">Trending right now</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Popular BookTok picks, pulled live from the web. Tap one to find it and add it to your shelves.
+                Popular picks pulled live from the web. Tap any book to read every review of it.
               </p>
             </div>
             <Button asChild variant="ghost">
@@ -127,9 +127,15 @@ function Index() {
               {(trending.data ?? []).slice(0, 8).map((b) => (
                 <Link
                   key={b.id}
-                  to="/search"
+                  to="/reviews/$workId"
+                  params={{ workId: b.id }}
+                  search={{
+                    title: b.title,
+                    author: b.author,
+                    ...(b.coverUrl ? { cover: b.coverUrl } : {}),
+                  }}
                   className="group block space-y-2"
-                  aria-label={`Find ${b.title} on BookTok`}
+                  aria-label={`Read reviews of ${b.title}`}
                 >
                   <div className="overflow-hidden rounded-sm border border-border transition-colors group-hover:border-gold">
                     {b.coverUrl ? (
@@ -257,25 +263,25 @@ function Index() {
               key={review.id}
               className="relative rounded-sm border border-border bg-card p-5 pr-20 transition-colors hover:border-gold"
             >
-              <a
-                href={review.goodreadsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${review.title} on Goodreads`}
+              <Link
+                to="/reviews/$workId"
+                params={{ workId: review.id }}
+                search={{ title: review.title, author: review.author }}
+                aria-label={`All reviews of ${review.title}`}
                 className="absolute right-4 top-4 flex aspect-2/3 w-12 items-center justify-center overflow-hidden rounded-sm border border-border/70 bg-muted shadow-md transition-colors hover:border-gold"
               >
                 <BookOpen className="text-gold/70" size={18} />
-              </a>
+              </Link>
               <div className="flex flex-wrap items-center gap-3">
                 <StarRating value={review.rating} size={15} />
-                <a
-                  href={review.goodreadsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/reviews/$workId"
+                  params={{ workId: review.id }}
+                  search={{ title: review.title, author: review.author }}
                   className="font-display text-xl hover:text-gold"
                 >
                   {review.title}
-                </a>
+                </Link>
                 <span className="text-xs text-muted-foreground">{review.author}</span>
               </div>
               <p className="mt-3 line-clamp-4 text-sm text-muted-foreground">{review.body}</p>
