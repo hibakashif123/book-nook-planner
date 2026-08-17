@@ -94,3 +94,80 @@ export const goodreadsReviews: GoodreadsReview[] = [
     goodreadsUrl: "https://www.goodreads.com/book/show/22822858-a-little-life",
   },
 ];
+
+/** Extra reader reviews so each popular title has a full review page. */
+export const goodreadsExtraReviews: GoodreadsReview[] = [
+  {
+    id: "gr-1b",
+    title: "The Song of Achilles",
+    author: "Madeline Miller",
+    reviewer: "Priya S.",
+    rating: 5,
+    body:
+      "I put off reading this for years because I thought I knew the story. I did not know this version of it. Miller writes tenderness like it's a weapon she's holding to your throat the whole time.",
+    goodreadsUrl: "https://www.goodreads.com/book/show/11250317-the-song-of-achilles",
+  },
+  {
+    id: "gr-1c",
+    title: "The Song of Achilles",
+    author: "Madeline Miller",
+    reviewer: "Tom H.",
+    rating: 4,
+    body:
+      "The middle sags a little while they're on Scyros, but the ending is one of the best-executed inevitable tragedies in modern fiction. Worth the hype, if not quite the crying videos.",
+    goodreadsUrl: "https://www.goodreads.com/book/show/11250317-the-song-of-achilles",
+  },
+  {
+    id: "gr-2b",
+    title: "Fourth Wing",
+    author: "Rebecca Yarros",
+    reviewer: "Leah M.",
+    rating: 5,
+    body:
+      "Read it in two sittings. The pacing is relentless and the dragons have more personality than most human characters I've read this year. Yes, the twist is telegraphed. No, I did not care.",
+    goodreadsUrl: "https://www.goodreads.com/book/show/61431922-fourth-wing",
+  },
+  {
+    id: "gr-2c",
+    title: "Fourth Wing",
+    author: "Rebecca Yarros",
+    reviewer: "Chris V.",
+    rating: 3,
+    body:
+      "Fun, but the prose is thin and the world-building keeps handing you rules it forgets by the next chapter. Still finished it in a weekend, so make of that what you will.",
+    goodreadsUrl: "https://www.goodreads.com/book/show/61431922-fourth-wing",
+  },
+  {
+    id: "gr-3b",
+    title: "Tomorrow, and Tomorrow, and Tomorrow",
+    author: "Gabrielle Zevin",
+    reviewer: "Noor A.",
+    rating: 5,
+    body:
+      "A novel about making things with someone you love and failing them anyway. The games are the least interesting part and that's the point — it's really about collaboration as a form of intimacy.",
+    goodreadsUrl: "https://www.goodreads.com/book/show/58784475-tomorrow-and-tomorrow-and-tomorrow",
+  },
+  {
+    id: "gr-7b",
+    title: "Atomic Habits",
+    author: "James Clear",
+    reviewer: "Daniel O.",
+    rating: 5,
+    body:
+      "The rare productivity book that's actually actionable on the first read. Habit stacking and environment design did more for me than any app ever has.",
+    goodreadsUrl: "https://www.goodreads.com/book/show/40121378-atomic-habits",
+  },
+];
+
+function normalizeTitle(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+/** All curated reader reviews that belong to a given book title. */
+export function goodreadsReviewsForTitle(title: string): GoodreadsReview[] {
+  const key = normalizeTitle(title);
+  if (!key) return [];
+  return [...goodreadsReviews, ...goodreadsExtraReviews].filter(
+    (review) => normalizeTitle(review.title) === key,
+  );
+}
