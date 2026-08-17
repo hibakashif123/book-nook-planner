@@ -127,9 +127,15 @@ function Index() {
               {(trending.data ?? []).slice(0, 8).map((b) => (
                 <Link
                   key={b.id}
-                  to="/search"
+                  to="/reviews/$workId"
+                  params={{ workId: b.id }}
+                  search={{
+                    title: b.title,
+                    author: b.author,
+                    ...(b.coverUrl ? { cover: b.coverUrl } : {}),
+                  }}
                   className="group block space-y-2"
-                  aria-label={`Find ${b.title} on BookTok`}
+                  aria-label={`Read reviews of ${b.title}`}
                 >
                   <div className="overflow-hidden rounded-sm border border-border transition-colors group-hover:border-gold">
                     {b.coverUrl ? (
