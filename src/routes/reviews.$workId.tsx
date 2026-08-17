@@ -10,7 +10,16 @@ import { Book3D } from "@/components/Book3D";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
-type Search = { title: string; author?: string; cover?: string };
+type CommunityReview = {
+  id: string;
+  rating: number;
+  body: string | null;
+  has_spoilers: boolean | null;
+  created_at: string;
+  profiles: { username: string; display_name: string | null } | null;
+};
+
+type Search = { title: string; author?: string | undefined; cover?: string | undefined };
 
 export const Route = createFileRoute("/reviews/$workId")({
   validateSearch: (search: Record<string, unknown>): Search => ({
@@ -115,7 +124,7 @@ function ReviewsPage() {
             )}
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild>
-                <Link to="/search" search={{ q: title } as never}>
+                <Link to="/search">
                   Add to my shelves
                 </Link>
               </Button>
@@ -184,7 +193,7 @@ function ReviewsPage() {
           <Skeleton className="mt-4 h-24 w-full" />
         ) : community.data && community.data.reviews.length > 0 ? (
           <div className="mt-4 grid gap-4 md:grid-cols-2">
-            {community.data.reviews.map((r) => (
+            {(community.data.reviews as CommunityReview[]).map((r) => (
               <article key={r.id} className="rounded-sm border border-border bg-card p-5">
                 <div className="flex flex-wrap items-center gap-3">
                   <StarRating value={r.rating} size={15} />
@@ -210,7 +219,7 @@ function ReviewsPage() {
           <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
             <BookOpen size={15} className="text-gold/70" />
             No one here has reviewed this yet.{" "}
-            <Link to="/search" search={{ q: title } as never} className="text-gold underline">
+            <Link to="/search" className="text-gold underline">
               Add it and be the first.
             </Link>
           </p>
